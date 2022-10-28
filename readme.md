@@ -11,10 +11,10 @@ with open(src_filename, 'r') as read:
     src_list = []
     for each_json in load_dict:
         source_json = {k:v for k, v in each_json.items() if k != "Y"}
-        source_str = ''
-        target_str = ''
+        
         target_str = each_json['Y']
         source_str = source_str + '背景:' + each_json['背景知识'] + '问题:' + each_json['当前询问']
+        
         # source_str = json.dumps(source_json, ensure_ascii=False, encoding='utf-8')
         # if iterator <= 612:
         if iterator <= 4:
