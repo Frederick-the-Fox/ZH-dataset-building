@@ -11,3 +11,4 @@ while line_ite < 160000 - 1:
     line_ite += 16
 content[159999] = '}]'
 f=open(json_file,'w+')
+f.writelines(content)

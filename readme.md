@@ -1,6 +1,36 @@
 # ZHIHU数据集说明
 
 > by WangYC
+> 
+## 数据使用example
+
+```python
+src_filename = src_dir + '/zhihu_' + str(iterator) + '_qa.jsonl'
+with open(src_filename, 'r') as read:
+    load_dict = json.load(read)
+    src_list = []
+    for each_json in load_dict:
+        source_json = {k:v for k, v in each_json.items() if k != "Y"}
+        source_str = ''
+        target_str = ''
+        target_str = each_json['Y']
+        source_str = source_str + '背景:' + each_json['背景知识'] + '问题:' + each_json['当前询问']
+        # source_str = json.dumps(source_json, ensure_ascii=False, encoding='utf-8')
+        # if iterator <= 612:
+        if iterator <= 4:
+            train_source.write(source_str + '\n')
+            train_target.write(target_str + '\n')
+        # elif iterator > 612 and iterator <= 649:
+        elif iterator > 4 and iterator <= 6:
+            val_source.write(source_str + '\n')
+            val_target.write(target_str + '\n')
+        # else:
+        elif iterator <= 7:
+            test_source.write(source_str + '\n')
+            test_target.write(target_str + '\n')
+read.close()
+```
+
 
 ## 基本信息
 
@@ -100,34 +130,4 @@ bash split.sh questions_answers.jsonl
 根据实际文件的数量修改脚本中的$iterator
 
 数据在服务器中位置：node1:/data/wangyuanchun/chinese_data/zhihu/processed/parse/zhihu_WangYC
-
-
-## 数据使用example
-
-```python
-src_filename = src_dir + '/zhihu_' + str(iterator) + '_qa.jsonl'
-with open(src_filename, 'r') as read:
-    load_dict = json.load(read)
-    src_list = []
-    for each_json in load_dict:
-        source_json = {k:v for k, v in each_json.items() if k != "Y"}
-        source_str = ''
-        target_str = ''
-        target_str = each_json['Y']
-        source_str = source_str + '背景:' + each_json['背景知识'] + '问题:' + each_json['当前询问']
-        # source_str = json.dumps(source_json, ensure_ascii=False, encoding='utf-8')
-        # if iterator <= 612:
-        if iterator <= 4:
-            train_source.write(source_str + '\n')
-            train_target.write(target_str + '\n')
-        # elif iterator > 612 and iterator <= 649:
-        elif iterator > 4 and iterator <= 6:
-            val_source.write(source_str + '\n')
-            val_target.write(target_str + '\n')
-        # else:
-        elif iterator <= 7:
-            test_source.write(source_str + '\n')
-            test_target.write(target_str + '\n')
-read.close()
-```
 
