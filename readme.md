@@ -91,4 +91,10 @@ bash split.sh questions_answers.jsonl
 8 src_filename=$1 #answer_comment.jsonl
 9 dst_dir='./post_split'
 ```
+## revise.sh
 
+用于将格式修改成jsonl可以直接加载的格式
+使用方法：将脚本和py文件放到post_processed文件夹中，执行脚本。
+修改参数：
+根据具体的数据格式修改line_iter每次相加的行数量
+根据实际文件的数量修改脚本中的$iterator
