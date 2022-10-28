@@ -98,3 +98,5 @@ bash split.sh questions_answers.jsonl
 修改参数：
 根据具体的数据格式修改line_iter每次相加的行数量
 根据实际文件的数量修改脚本中的$iterator
+
+数据在服务器中位置：node1:/data/wangyuanchun/chinese_data/zhihu/processed/parse/zhihu_WangYC
